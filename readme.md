@@ -15,12 +15,27 @@
  $ go test ./...
  ```
 
- ## How to Build
+ ## How to Build Linux
 ```sh
-    $ go build
+$ GOOS=linux GOARCH=amd64  go build -ldflags='-s' -o=.simple-store
 ```
 
 ## Build Docker Image
 ```sh
     $ docker build -t store .
+```
+
+
+## Example  API CALL
+
+```sh
+curl --location --request POST 'localhost:8080/store' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Items":[
+        { "name":"Google Home"},
+        { "name":"Google Home"},
+        { "name":"Google Home"}
+    ]
+}'
 ```
